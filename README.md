@@ -1,75 +1,88 @@
-# `google/mcp`
+# Travel Data Analysis Agent
 
-This repository contains a list of Google's official Model Context Protocol (MCP) servers, guidance on how to deploy MCP servers to Google Cloud, and examples to get started.
+This project is a travel data analysis agent built with Google ADK and BigQuery.
 
-## ⚡ Google MCP Servers
+It allows users to ask natural language questions about custom travel datasets and get structured answers based on BigQuery query results.
 
-### **Remote MCP servers** 
+## Overview
 
-These [remote MCP servers are managed by Google](https://docs.cloud.google.com/mcp/overview), and are available [via endpoint](https://docs.cloud.google.com/mcp/enable-disable-mcp-servers). This list will be kept up-to-date as more remote servers become available. 
+This project was adapted from the `google/mcp` example and customized into a BigQuery-powered travel analysis assistant.
 
-* [**AlloyDB for PostgreSQL**](https://docs.cloud.google.com/alloydb/docs/ai/use-alloydb-mcp)
-* [**BigQuery**](https://docs.cloud.google.com/bigquery/docs/use-bigquery-mcp)  
-* [**Bigtable**](https://docs.cloud.google.com/bigtable/docs/use-bigtable-mcp)
-* [**Cloud Resource Manager**](https://docs.cloud.google.com/resource-manager/reference/mcp)
-* [**Cloud SQL for MySQL**](https://docs.cloud.google.com/sql/docs/mysql/use-cloudsql-mcp)
-* [**Cloud SQL for PostgreSQL**](https://docs.cloud.google.com/sql/docs/postgres/use-cloudsql-mcp)
-* [**Cloud SQL for SQL Server**](https://docs.cloud.google.com/sql/docs/sqlserver/use-cloudsql-mcp)
-* [**Compute Engine (GCE)**](https://docs.cloud.google.com/compute/docs/reference/mcp)
-* [**Developer Knowledge API (Google Developer Documentation)**](https://developers.google.com/knowledge/mcp)
-* [**Firestore**](https://docs.cloud.google.com/firestore/native/docs/use-firestore-mcp)
-* [**Google Maps (Grounding Lite)**](https://developers.google.com/maps/ai/grounding-lite)  
-* [**Google Security Operations (Chronicle)**](https://docs.cloud.google.com/chronicle/docs/reference/mcp)
-* [**Kubernetes Engine (GKE)**](https://docs.cloud.google.com/kubernetes-engine/docs/reference/mcp)   
-* [**Spanner**](https://docs.cloud.google.com/spanner/docs/use-spanner-mcp)
+The current version focuses on data analysis only and does not use Google Maps.
 
-### **Open-source MCP servers**  
+## Features
 
-You can run these open-source MCP servers locally, or deploy them to Google Cloud (see below).  
+- Natural language querying over travel-related datasets
+- BigQuery integration for structured data access
+- Attraction-to-park lookup
+- Basic aggregation and summary analysis
+- Lightweight and cost-conscious setup
 
-* [**Google Workspace**](https://github.com/gemini-cli-extensions/workspace), including Google Docs, Sheets, Slides, Calendar, and Gmail. (Gemini CLI extension)  
-* [**Firebase**](https://github.com/gemini-cli-extensions/firebase/) (Gemini CLI extension)  
-* [**Cloud Run**](https://github.com/GoogleCloudPlatform/cloud-run-mcp) (Gemini CLI Extension)
-* [**Go**](https://go.dev/gopls/features/mcp) 
-* [**Google Analytics**](https://github.com/googleanalytics/google-analytics-mcp)  
-* [**MCP Toolbox for Databases**](https://github.com/googleapis/genai-toolbox), including BigQuery, Cloud SQL, AlloyDB, Spanner, Firestore, and more.  
-* [**Google Cloud Storage**](https://github.com/googleapis/gcloud-mcp/tree/main/packages/storage-mcp)  
-* [**Genmedia**](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia), including Imagen and Veo models.  
-* [**Kubernetes Engine (GKE)**](https://github.com/GoogleCloudPlatform/gke-mcp)  
-* [**Google Cloud Security**](https://github.com/google/mcp-security), including Security Command Center, Chronicle, and more.  
-* [**gcloud CLI**](https://github.com/googleapis/gcloud-mcp/tree/main/packages/gcloud-mcp)  
-* [**Google Cloud Observability**](https://github.com/googleapis/gcloud-mcp/tree/main/packages/observability-mcp)
-* [**Flutter/Dart**](https://github.com/dart-lang/ai/tree/main/pkgs/dart_mcp_server)
-* [**Google Maps Platform Code Assist toolkit**](https://developers.google.com/maps/ai/mcp)
-* [**Chrome DevTools**](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+## Dataset
 
-## 💻 Examples
+The agent currently works with the following BigQuery dataset:
 
-* [**Launch My Bakery**](http://github.com/google/mcp/tree/main/examples/launchmybakery) (`/examples/launchmybakery`)**:** A sample agent built with Agent Development Kit (ADK) that uses remote MCP servers for Google Maps and BigQuery. 
+- `travelbot.attraction_park`
+  - Maps attractions to parks
+  - Example questions:
+    - Which park does Bumper Cars belong to?
+    - List attractions in PortAventura World.
+    - Which park has the most attractions?
 
+- `travelbot.review_ratings`
+  - Contains category-based travel rating data
+  - Example questions:
+    - What columns are available in review_ratings?
+    - Give me a summary of the review_ratings table.
+    - Which rating categories have the highest average scores?
 
-## 📙 Resources
+## Tech Stack
 
-### **Run an MCP server in Google Cloud** 
+- Google ADK
+- BigQuery
+- Python
+- Cloud Run
 
-* [Documentation \- Host MCP Servers on Cloud Run](https://docs.cloud.google.com/run/docs/host-mcp-servers)  
-* Blog Post \- [Build and Deploy a Remote MCP Server to Google Cloud Run in Under 10 Minutes](https://cloud.google.com/blog/topics/developers-practitioners/build-and-deploy-a-remote-mcp-server-to-google-cloud-run-in-under-10-minutes)  
-* [MCP Toolbox for Databases \- Deploy to Cloud Run](https://googleapis.github.io/genai-toolbox/how-to/deploy_toolbox/), [Deploy to Google Kubernetes Engine (GKE)](https://googleapis.github.io/genai-toolbox/how-to/deploy_gke/)  
-* [Blog post - Announcing MCP support for Apigee](https://cloud.google.com/blog/products/ai-machine-learning/mcp-support-for-apigee) (Turnkey MCP hosting for Apigee-hosted APIs)  
-* “Tools Make an Agent” \- [Blog](https://cloud.google.com/blog/topics/developers-practitioners/tools-make-an-agent-from-zero-to-assistant-with-adk) and [Codelab](https://codelabs.developers.google.com/codelabs/cloud-run/tools-make-an-agent)  
-* Codelab \- [How to deploy a secure MCP server on Cloud Run](https://codelabs.developers.google.com/codelabs/cloud-run/how-to-deploy-a-secure-mcp-server-on-cloud-run#0)  
-* [Codelab \- "Agent Verse" \- Architecting Multi-agent Systems](http://goo.gle/summoner) 
+## Project Scope
 
-## 🤝 Contributing
+This project is designed as a simple travel data analysis assistant.
 
-We welcome contributions to this repository, including bug reports, feature requests, documentation improvements, and code contributions. Please see our [Contributing Guidelines](https://github.com/google/mcp/blob/main/CONTRIBUTING.md) to get started.
+It does not provide:
+- Google Maps integration
+- route planning
+- live location lookup
+- external travel recommendation APIs
 
-## 📃 License
+## Example Questions
 
-This project is licensed under the Apache 2.0 License \- see the [LICENSE](https://github.com/google/mcp/blob/main/LICENSE) file for details.
+- Which park does Bumper Cars belong to?
+- List 10 attractions in PortAventura World.
+- Which park has the most attractions?
+- What columns are available in travelbot.review_ratings?
+- Give me a summary of the review_ratings table.
 
-## Disclaimers
+## Deployment
 
-This is not an officially supported Google product. This project is intended for demonstration purposes only.
+This project can be deployed to Cloud Run using ADK.
 
-This project is not eligible for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security).  
+Example:
+
+```bash
+uvx --from google-adk==1.14.0 \
+adk deploy cloud_run \
+  --project=$PROJECT_ID \
+  --region=europe-west1 \
+  --service_name=travelo \
+  --with_ui \
+  . \
+  -- \
+  --labels=ddr-tutorial=codelab-adk \
+  --service-account=$SERVICE_ACCOUNT
+```
+## Notes
+This project uses BigQuery as the main data source.
+Google Maps functionality has been removed.
+The current version is intended for demo and learning purposes.
+
+## License
+MIT License
