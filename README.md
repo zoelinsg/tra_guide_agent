@@ -84,5 +84,6 @@ This project uses BigQuery as the main data source.
 Google Maps functionality has been removed.
 The current version is intended for demo and learning purposes.
 
-## License
-MIT License
+## Demo
+
+[![Watch the demo](https://img.youtube.com/vi/IzfEXGgclxo/0.jpg)](https://youtu.be/IzfEXGgclxo)
