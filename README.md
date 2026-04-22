@@ -86,4 +86,6 @@ The current version is intended for demo and learning purposes.
 
 ## Demo
 
+[▶ Watch the video demo on YouTube](https://youtu.be/IzfEXGgclxo)
+
 [![Watch the demo](https://img.youtube.com/vi/IzfEXGgclxo/0.jpg)](https://youtu.be/IzfEXGgclxo)
